@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: httpd-24
+  namespace: gitops-test
+  labels:
+    app: httpd-24
+spec:
+  to:
+    kind: Service
+    name: httpd-24
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

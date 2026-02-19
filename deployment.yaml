@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-24
+  namespace: gitops-test
+  labels:
+    app: httpd-24
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: httpd-24
+  template:
+    metadata:
+      labels:
+        app: httpd-24
+    spec:
+      containers:
+      - name: httpd-24
+        image: registry.access.redhat.com/ubi9/httpd-24:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        - containerPort: 8443
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
